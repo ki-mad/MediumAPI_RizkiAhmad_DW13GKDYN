@@ -28,12 +28,25 @@ app.listen(port, () => console.log(`Listening on port ${port}!`))
 
 //import the controller
 const CategoryControllers = require('./controllers/category')
-const ArticleControllers = require('./controllers/home')
+const HomeControllers = require('./controllers/home')
 
 app.group("/api/v1", (router) => {
 
     //todos API, call controller here in the callback
+
+    //to get all field in table categories
     router.get('/categories', CategoryControllers.index)
+    //post data to categories
     router.post('/category', CategoryControllers.store)
-    router.get('/article', ArticleControllers.index)
+    //show categories data by id
+    router.get('/category/:id', CategoryControllers.showCategory)
+
+    //show article by category id
+    router.get('/article/:id', HomeControllers.ArticleByCat)
+    // show all article field
+    router.get('/articles', HomeControllers.showArticle)
+    // show all article sort by newest article
+    router.get('/latest_article', HomeControllers.showLatestArticle)
+
+    router.get('/articleComment/:id', HomeControllers.getComment)
 })
