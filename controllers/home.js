@@ -68,6 +68,10 @@ exports.getComment = (req, res) => {
                 as: "categoryId"
             },
             {
+                model: User,
+                as: "userId"
+            },
+            {
                 model: Comment,
                 as: "Comments"
             }
